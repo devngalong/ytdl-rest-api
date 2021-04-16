@@ -74,7 +74,10 @@ id: info.videoDetails.videoId,
 app.get('/audio', async (req, res, next) => {
   try {
     var url = req.query.id;
-    res.header('Content-Disposition', `attachment; filename="audio.mp3"`);
+    var timestamp = new Date().toISOString().replace(/[-:.]/g,"");  
+    var random = ("" + Math.random()).substring(2, 8); 
+    var random_number = timestamp+random;  
+     res.header('Content-Disposition', `Content-Disposition" : "attachment; filename=`+random_number+".mp3");
     ytdl(url, {
       format: 'mp3',
       filter: 'audioonly',
